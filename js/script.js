@@ -39,7 +39,7 @@ function verde() {
 }
 
 function mudarAutomatico() {
-    auto.textContent = "Automatico"
+    auto.textContent = "Automático"
 }
 
 function trocarImagem(){
