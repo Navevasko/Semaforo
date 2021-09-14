@@ -1,5 +1,6 @@
 "use strict"
 const semaforo = document.getElementById("semaforo")
+const auto = document.getElementById("Automatico")
 let idInterval
 
 function semaforoVermelho() {
@@ -14,49 +15,58 @@ function semaforoDesligado() {
     return semaforo.src.includes("desligado")
 }
 
+function pararAutomatico() {
+    clearInterval(idInterval)
+}
+
 function vermelho() {
     semaforo.src="img/vermelho.png"
+    pararAutomatico()
+    mudarAutomatico()
 }
 
 
 function amarelo() {
     semaforo.src="img/amarelo.png"
+    pararAutomatico()
+    mudarAutomatico()
 }
 
 function verde() {
     semaforo.src="img/verde.png"
+    pararAutomatico()
+    mudarAutomatico()
+}
+
+function mudarAutomatico() {
+    auto.textContent = "Automatico"
 }
 
 function trocarImagem(){
 
     if(semaforoDesligado()) {
-        vermelho()
+        semaforo.src = "img/vermelho.png"
     }
     else if(semaforoVermelho()) {
-        amarelo()
+        semaforo.src = "img/amarelo.png"
     }
     else if(semaforoAmarelo()) {
-        verde()
+        semaforo.src = "img/verde.png"
     }
     else {
-        vermelho()
+        semaforo.src = "img/vermelho.png"
     }
 
 }
 
-function pararAutomatico() {
-    clearInterval(idInterval)
-    semaforo.src="img/desligado.png"
-}
 
 function automatico() {
-    const automatico = document.getElementById("Automatico")
-    if (automatico.textContent == "Automatico") {
+    if (auto.textContent == "Automático") {
         idInterval = setInterval(trocarImagem, 1000)
-        automatico.textContent = "Parar"
+        auto.textContent = "Parar"
     } else {
         pararAutomatico()
-        automatico.textContent = "Automatico"
+        auto.textContent = "Automático"
     }
 
 }
